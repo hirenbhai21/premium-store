@@ -7,10 +7,7 @@ const UserSchema = new mongoose.Schema({
     phone: { type: String, required: true, unique: true }, // Mandatory Phone No
     walletBalance: { type: Number, default: 0 },         // Wallet Balance tracking
     profilePic: { type: String, default: "" },            // DP Image url link
-    savedAddress: { type: String, default: "" }, 
-    role: { type: String, default: "User" }, // User ya Admin
-    status: { type: String, default: "Active" }, // Active ya Inactive
-    isOnline: { type: Boolean, default: false },         // Recent Saved Address string
+    savedAddress: { type: String, default: "" },          // Recent Saved Address string
     customId: { type: String }
 }, { timestamps: true });
 

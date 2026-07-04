@@ -19,7 +19,6 @@ const server = http.createServer(app);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const adminUserController = require('./models/adminUserController');
 
 const io = new Server(server, {
     cors: {
@@ -47,10 +46,6 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/auth', authRoutes); 
 app.use('/api/admin', adminUserRoutes);
-app.get('/api/admin/users', adminUserController.getAllUsersList);
-app.get('/api/admin/user/:id', adminUserController.getSingleUserDetails);
-app.patch('/api/admin/user-status/:id', adminUserController.toggleUserStatus);
-
 
 const DB_URI = 'mongodb+srv://hiren:hiren12@cluster0.bhothyy.mongodb.net/ecommerce?retryWrites=true&w=majority';
 mongoose.connect(DB_URI, { maxPoolSize: 10, serverSelectionTimeoutMS: 5000 })
