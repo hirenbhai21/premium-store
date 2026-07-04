@@ -7,6 +7,7 @@ import AddProduct from './pages/AddProduct';
 import Products from './pages/Products';
 import ManageOrders from './pages/ManageOrders';
 import ManageUsers from './pages/ManageUsers';
+import AdminSupport from './pages/AdminSupport'; // 🔥 Naya Support Terminal Integration
 
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
@@ -16,6 +17,7 @@ import ProductDetail from './pages/ProductDetail';
 import Auth from './pages/Auth';
 import Checkout from './pages/Checkout';
 import MyOrders from './pages/MyOrders';  
+import HelpChat from './components/HelpChat'; // 🔥 User Side Floating Support Widget
 
 // 🛡️ ROUTE GUARD: Strict security check block for password-only admin logic
 const AdminGuard = ({ children }) => {
@@ -35,10 +37,12 @@ const AdminGuard = ({ children }) => {
   );
 };
 
+// 🔥 USER LAYOUT INTEGRATION: Yahan niche <HelpChat /> link kar diya hai taaki har user page par live popup rahe!
 const UserLayout = ({ children }) => (
   <div className="min-h-screen bg-[#f8fafc]">
     <Navbar />
     <div className="p-6 max-w-7xl mx-auto">{children}</div>
+    <HelpChat /> 
   </div>
 );
 
@@ -53,6 +57,7 @@ function App() {
           <Route path="/product/:id" element={<UserLayout><ProductDetail /></UserLayout>} />
           <Route path="/checkout" element={<UserLayout><Checkout /></UserLayout>} />
           <Route path="/myorders" element={<UserLayout><MyOrders /></UserLayout>} />
+          
           <Route path="/login" element={<Auth />} />
 
           {/* Admin Portal Password-Only Login Path */}
@@ -65,6 +70,9 @@ function App() {
           <Route path="/admin/add-product" element={<AdminGuard><AddProduct /></AdminGuard>} />
           <Route path="/admin/manage-orders" element={<AdminGuard><ManageOrders /></AdminGuard>} />
           <Route path="/admin/customers" element={<AdminGuard><ManageUsers /></AdminGuard>} />
+          
+          {/* 🔥 New Admin Support Chat Route Integration */}
+          <Route path="/admin/support" element={<AdminGuard><AdminSupport /></AdminGuard>} />
         </Routes>
       </BrowserRouter>
     </CartProvider>
